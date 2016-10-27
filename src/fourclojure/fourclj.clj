@@ -1,4 +1,4 @@
-(ns fourclj
+(ns fourclojure.fourclj
   (require [clojure.set]))
 
 (def from-roman

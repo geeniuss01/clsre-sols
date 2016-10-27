@@ -1,4 +1,4 @@
-(ns funcs)
+(ns fourclojure.funcs)
 
 (def __ (fn [sq]
           (reduce (fn [new old]
