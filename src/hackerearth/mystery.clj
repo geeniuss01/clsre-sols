@@ -32,3 +32,13 @@
         (println (str (solve (Long/parseLong s)) "\n" (clojure.string/join "\n" (map solve (for [t (range (dec T))] (Long/parseLong (read-line)))))))))))
         
 
+
+;; unused. added fro debugging purpose
+(defn fctrs [n]
+  "reutrns factors of n"
+  (loop [i 2 f []]
+    (println i f)
+    (if (>= i (inc (/ n 2))) f
+      (recur (inc i) (if (zero? (rem n i)) (conj f i) f)))
+    )
+  )
