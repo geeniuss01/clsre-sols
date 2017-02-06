@@ -1,4 +1,4 @@
-(ns other.star)
+(ns hk.star)
 
 (defn rd []
   (Double/parseDouble (read-line)))
