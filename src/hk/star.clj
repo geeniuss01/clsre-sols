@@ -95,6 +95,25 @@
 (defn _lonely []
   (let [n (read-line)]
     (println (lonely (map #(Integer/parseInt %) (clojure.string/split (read-line) #" "))))))
-(lonely [1 1 2  3 2])
 
+
+;fibonacci-modified
+(defn f 
+  "not as effecint as the recursive algo"
+  ([]  (f 1 1))
+  ([a b] (let [n (+' a (*' b b))]
+           (lazy-seq (cons a (f b n))))))
+
+(defn f1 [a b n]
+  #_(println a b n)
+  (if (= n 1) b (f1 b (+' a (*' b b)) (dec n))))
+
+(defn _f []
+  (let [s (read-line) [a b n] (map #(BigInteger. %)  (clojure.string/split s #"\s+")) ]
+    #_(println (str (nth (f1 a b) (dec n))))
+    (println (str (f1 a b (dec n))))
+    ))
+
+(is-funny? "2323" )
+(is-funny? "3343")
 
