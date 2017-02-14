@@ -4,8 +4,8 @@
   (Double/parseDouble (read-line)))
 
 (def arth (fn [] 
-(let [meal (rd) tip (rd) tax (rd) ]
-  (println "The total meal cost is" (Math/round (+  meal (/ (* meal tip) 100) (/ (* meal tax) 100) )) "dollars."))))
+           (let [meal (rd) tip (rd) tax (rd)]
+             (println "The total meal cost is" (Math/round (+  meal (/ (* meal tip) 100) (/ (* meal tax) 100) )) "dollars."))))
 
 
 ;; https://www.hackerrank.com/challenges/utopian-tree
@@ -37,15 +37,15 @@
 
 ;; https://www.hackerrank.com/challenges/beautiful-binary-string
 (defn beau [s1]
-  (loop [n 0 s s1 ]
+  (loop [n 0 s s1]
     (cond
      (empty? s) n
      (.startsWith s "01010") (recur (inc n) (.substring s 4))
      (.startsWith s "010") (recur (inc n) (.substring s 3))
-     :else (recur n (.substring s 1))
-     )
-    )
-)
+     :else (recur n (.substring s 1)))))
+     
+    
+
 
 ;;(beau "010")
 
@@ -59,8 +59,8 @@
      :else (let [i1 (int (nth s i)) i2 (int (nth s (inc i))) j1 (int (nth s j)) j2 (int (nth s (dec j)))] 
              (if (= (Math/abs (- i1 i2)) (Math/abs (- j1 j2)))
                (recur (inc i) (dec j))
-               "Not funny"))
-     )))
+               "Not funny")))))
+     
 
 (def ip (fn []  (let [N (Integer/parseInt (read-line))]
                  (dotimes [n N] 
@@ -74,11 +74,27 @@
 (defn countt []
   (let [N (read-line) s (read-line) ar (map #(Integer/parseInt %) (clojure.string/split s #" "))
         f (frequencies ar)]
-    (dotimes [n 100] (print (f (inc n) 0) ""))
-        )
-  )
+    (dotimes [n 100] (print (f (inc n) 0) ""))))
+        
+  
+;;challenges/pangrams
+(defn pangram? [s]
+  #_(println (sort (set s)))
+  (.contains (clojure.string/join "" (sort (set (.toLowerCase s)))) "abcdefghijklmnopqrstuvwxyz"))
+
+(defn pangram-test [] 
+  (let [s (read-line)]
+    (println (if (pangram? s) "pangram" "not pangram"))))
 
 
-;; 2 2 3 3 3 7
-; 7 7 4 4 4 7
-; 
+
+;; lonely-integer
+(defn lonely [v]
+  (first (first (filter #(= 1 (second %)) (frequencies v)))))
+
+(defn _lonely []
+  (let [n (read-line)]
+    (println (lonely (map #(Integer/parseInt %) (clojure.string/split (read-line) #" "))))))
+(lonely [1 1 2  3 2])
+
+
