@@ -3,18 +3,18 @@
 (defn rd []
   (Double/parseDouble (read-line)))
 
-(def arth (fn [] 
-           (let [meal (rd) tip (rd) tax (rd)]
-             (println "The total meal cost is" (Math/round (+  meal (/ (* meal tip) 100) (/ (* meal tax) 100) )) "dollars."))))
+(def arth (fn []
+            (let [meal (rd) tip (rd) tax (rd)]
+              (println "The total meal cost is" (Math/round (+ meal (/ (* meal tip) 100) (/ (* meal tax) 100))) "dollars."))))
 
 
 ;; https://www.hackerrank.com/challenges/utopian-tree
-(def uto 
-  (fn [N] 
+(def uto
+  (fn [N]
     (loop [n 0 h 1 spring true]
-;;      (println n h spring)
-      (if (>= n N) h 
-          (recur (inc n) (if spring (* h 2) (inc h)) (not spring))))))
+      ;;      (println n h spring)
+      (if (>= n N) h
+                   (recur (inc n) (if spring (* h 2) (inc h)) (not spring))))))
 ;;(uto 4)
 
 
@@ -39,12 +39,12 @@
 (defn beau [s1]
   (loop [n 0 s s1]
     (cond
-     (empty? s) n
-     (.startsWith s "01010") (recur (inc n) (.substring s 4))
-     (.startsWith s "010") (recur (inc n) (.substring s 3))
-     :else (recur n (.substring s 1)))))
-     
-    
+      (empty? s) n
+      (.startsWith s "01010") (recur (inc n) (.substring s 4))
+      (.startsWith s "010") (recur (inc n) (.substring s 3))
+      :else (recur n (.substring s 1)))))
+
+
 
 
 ;;(beau "010")
@@ -53,17 +53,17 @@
 
 (defn is-funny? [s]
   (loop [i 0 j (dec (count s))]
-    (cond 
-     (= 2 (count s)) "Funny"
-     (< (- j i) 2) "Funny"
-     :else (let [i1 (int (nth s i)) i2 (int (nth s (inc i))) j1 (int (nth s j)) j2 (int (nth s (dec j)))] 
-             (if (= (Math/abs (- i1 i2)) (Math/abs (- j1 j2)))
-               (recur (inc i) (dec j))
-               "Not funny")))))
-     
+    (cond
+      (= 2 (count s)) "Funny"
+      (< (- j i) 2) "Funny"
+      :else (let [i1 (int (nth s i)) i2 (int (nth s (inc i))) j1 (int (nth s j)) j2 (int (nth s (dec j)))]
+              (if (= (Math/abs (- i1 i2)) (Math/abs (- j1 j2)))
+                (recur (inc i) (dec j))
+                "Not funny")))))
 
-(def ip (fn []  (let [N (Integer/parseInt (read-line))]
-                 (dotimes [n N] 
+
+(def ip (fn [] (let [N (Integer/parseInt (read-line))]
+                 (dotimes [n N]
                    (println (is-funny? (read-line)))))))
 
 ;;(is-funny? "ab")
@@ -75,14 +75,14 @@
   (let [N (read-line) s (read-line) ar (map #(Integer/parseInt %) (clojure.string/split s #" "))
         f (frequencies ar)]
     (dotimes [n 100] (print (f (inc n) 0) ""))))
-        
-  
+
+
 ;;challenges/pangrams
 (defn pangram? [s]
   #_(println (sort (set s)))
   (.contains (clojure.string/join "" (sort (set (.toLowerCase s)))) "abcdefghijklmnopqrstuvwxyz"))
 
-(defn pangram-test [] 
+(defn pangram-test []
   (let [s (read-line)]
     (println (if (pangram? s) "pangram" "not pangram"))))
 
@@ -98,9 +98,9 @@
 
 
 ;fibonacci-modified
-(defn f 
+(defn f
   "not as effecint as the recursive algo"
-  ([]  (f 1 1))
+  ([] (f 1 1))
   ([a b] (let [n (+' a (*' b b))]
            (lazy-seq (cons a (f b n))))))
 
@@ -109,11 +109,14 @@
   (if (= n 1) b (f1 b (+' a (*' b b)) (dec n))))
 
 (defn _f []
-  (let [s (read-line) [a b n] (map #(BigInteger. %)  (clojure.string/split s #"\s+")) ]
+  (let [s (read-line) [a b n] (map #(BigInteger. %) (clojure.string/split s #"\s+"))]
     #_(println (str (nth (f1 a b) (dec n))))
     (println (str (f1 a b (dec n))))
     ))
 
-(is-funny? "2323" )
-(is-funny? "3343")
 
+;; taum-and-bday
+
+(defn taum [b w x y z]
+  (let [x1 (+ y z) y1 (+ x z)]
+    (+ (* b (min x x1)) (* w (min y y1)))))
