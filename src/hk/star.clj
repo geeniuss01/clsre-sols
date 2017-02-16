@@ -111,8 +111,8 @@
 (defn _f []
   (let [s (read-line) [a b n] (map #(BigInteger. %) (clojure.string/split s #"\s+"))]
     #_(println (str (nth (f1 a b) (dec n))))
-    (println (str (f1 a b (dec n))))
-    ))
+    (println (str (f1 a b (dec n))))))
+    
 
 
 ;; taum-and-bday
@@ -120,3 +120,25 @@
 (defn taum [b w x y z]
   (let [x1 (+ y z) y1 (+ x z)]
     (+ (* b (min x x1)) (* w (min y y1)))))
+
+
+;;sherlock-and-the-beast
+
+(defn beast
+  ([n] (beast (* 3 (quot n 3)) (rem n 3)))
+  ([a' b']
+   (loop [a a' b b']
+     #(println a b)
+     (cond
+       (or (< a 0) (< b 0)) (str -1)
+       (and (zero? (rem a 3)) (zero? (rem b 5))) (str (clojure.string/join(repeat a 5)) (clojure.string/join(repeat b 3)))
+       :else  (recur (- a 3) (+ b 3))))))
+
+
+
+
+
+
+
+
+
