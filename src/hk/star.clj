@@ -112,7 +112,7 @@
   (let [s (read-line) [a b n] (map #(BigInteger. %) (clojure.string/split s #"\s+"))]
     #_(println (str (nth (f1 a b) (dec n))))
     (println (str (f1 a b (dec n))))))
-    
+
 
 
 ;; taum-and-bday
@@ -131,8 +131,8 @@
      #(println a b)
      (cond
        (or (< a 0) (< b 0)) (str -1)
-       (and (zero? (rem a 3)) (zero? (rem b 5))) (str (clojure.string/join(repeat a 5)) (clojure.string/join(repeat b 3)))
-       :else  (recur (- a 3) (+ b 3))))))
+       (and (zero? (rem a 3)) (zero? (rem b 5))) (str (clojure.string/join (repeat a 5)) (clojure.string/join (repeat b 3)))
+       :else (recur (- a 3) (+ b 3))))))
 
 
 
@@ -144,16 +144,56 @@
 (defn count-jumps [s]
   (loop [cnt 0 s' s]
     #_(println cnt s')
-    (cond 
-     (empty? s') cnt
-     (= s' "0") cnt
-     (or (= s' "00") (= s' "10")) (inc cnt)
-     (= \0 (get s' 2)) (recur (inc cnt) (subs s' 2))
-     (= \1 (get s' 2)) (recur (inc cnt) (subs s' 1)))))
-
+    (cond
+      (empty? s') cnt
+      (= s' "0") cnt
+      (or (= s' "00") (= s' "10")) (inc cnt)
+      (= \0 (get s' 2)) (recur (inc cnt) (subs s' 2))
+      (= \1 (get s' 2)) (recur (inc cnt) (subs s' 1)))))
 
 
 
 #_(let [n (read-line)]
-  (println (count-jumps (.replace (read-line) " " ""))))
+    (println (count-jumps (.replace (read-line) " " ""))))
+
+;; challenges/journey-to-the-moon
+
+
+(defn journey-combs [v']
+  (loop [v (vals (frequencies v')) c []]
+    (if (empty? v) (apply + (flatten c))
+                   (recur (next v) (conj c (map #(* (first v) %) (next v)))))))
+
+(defn -j1 []
+  (let [[n p] (map #(bigint %) (clojure.string/split (read-line) #"\s+"))]
+    (loop [i 0 v (vec (range n))]
+      (if (>= i p) (println (journey-combs v))
+                   (let [n (map #(bigint %) (clojure.string/split (read-line) #"\s+"))
+                         a (apply min n) b (apply max n)]
+                     #_(println i n a b  v (get v b) (get v a ) )
+                     (recur (inc i) (replace {(get v b) (get v a)} v)))))))
+
+(-j1)
+
+;;testing
+(defn double-sort [v]
+  (sort-by first (map sort v)))
+
+
+(defn comb [grp v]
+  (let [m (get v (apply min grp))]
+    #_(println grp v)
+    (reduce #(assoc %1 %2 m) v grp)))
+
+(defn comb-all [n grps]
+  (let [v (vec (range n))]
+    (reduce #(comb %2 %1) v grps)))
+
+(defn -j []
+  (let [[n p] (map #(bigint %) (clojure.string/split (read-line) #"\s+"))]
+    (loop [i 0 v []]
+      (if (>= i p) (println (journey-combs (comb-all n (double-sort v))))
+                   (recur (inc i) (conj v (map #(bigint %) (clojure.string/split (read-line) #"\s+"))))))))
+
+;;(-j)
 
