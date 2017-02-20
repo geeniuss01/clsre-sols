@@ -13,10 +13,3 @@
 
 (def z1 (iterate #(nxt-exp % x m) (rem x m)))
 
-(defn )
-
-;; testing
-(take k z1)
-(def o (nth z1 (dec k)))
-(def o1 (rem (Math/pow x k) m))
-(==  o o1)

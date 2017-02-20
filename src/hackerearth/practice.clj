@@ -35,4 +35,4 @@
   (let [s-ar (clojure.string/split (read-line) #" ") a (Long/parseLong (first s-ar)) b (Long/parseLong (second s-ar))]
     (println (num-fac (gcd a b)))))
 
-(-main)
+;(-main)

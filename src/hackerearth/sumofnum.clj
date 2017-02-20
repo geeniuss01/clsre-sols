@@ -5,4 +5,4 @@
     (dotimes [t T] (let [s (read-line) ts (clojure.string/split s #" ")]
        (println (reduce #(+ %1 (Long/parseLong %2)) 0 ts))))))
 
-(-main)
+;(-main)

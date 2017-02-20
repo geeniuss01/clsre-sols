@@ -10,7 +10,7 @@
   (let [s1 (read-line)]
     (println (str (s (map (fn [n] (rem (inc (bigint n)) p)) (clojure.string/split (read-line) #"\s+")))))))
 
-(-main)
+;(-main)
 
 (def k 10)
 (def n1 [ 6 8 14])

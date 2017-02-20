@@ -1,4 +1,4 @@
-(ns hl)
+(ns other.hl)
 (defn fact-loop [n]
   (loop [current n fact 1]
     (if (= current 1)

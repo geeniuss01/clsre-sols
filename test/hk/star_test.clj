@@ -1,5 +1,4 @@
-(ns clsre.core-test
+(ns hk.star-test
   (:require [expectations :refer :all]))
 
-(expect nil? nil)
-
+(expect 1 1)

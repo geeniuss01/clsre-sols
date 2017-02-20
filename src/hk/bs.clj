@@ -1,6 +1,6 @@
 (ns hk.bs)
 
-
+;; build-a-string
 (defn substitution-cost [x y costx b]
     (let [ss (subs y (count x))]
       #_(println "x" x "y" y "cx" costx "b" b)
@@ -29,4 +29,4 @@
            (let [[n a b] (map #(Integer/parseInt %) (clojure.string/split (read-line) #"\s+")) s (read-line)]
              (println ((subss s a b) s) )))))
 
-(-m )
+;(-m )

@@ -11,12 +11,13 @@
 (defn solve [k]
   (clojure.string/join "\n" (take k (fbz 1 1 1 1))))
 
+
 (defn -main []
   (let [T (Long/parseLong (read-line))]
     (let [s (read-line) ts (clojure.string/split s #" ")]
       (println (clojure.string/join "\n" (map #(solve (Long/parseLong %)) ts))))))
 
-(-main)
+;(-main)
 
 
 

@@ -1,6 +1,6 @@
 ;;http://code.google.com/codejam/contest/433101/dashboard#s=p1
 
-(ns codejam.fair-warn)
+(ns codejam.fair_warn)
 
 
 ;; euclid algo taken from here http://rosettacode.org/wiki/Greatest_common_divisor#Euclid.27s_Algorithm

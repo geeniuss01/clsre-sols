@@ -1,4 +1,4 @@
-(ns another
+(ns other.another
   (:require [clojure.string :as str]))
 (defn error-message
   [severity]
@@ -6,6 +6,7 @@
        (if (= severity :mild)
          "MILDLY INCONVENIENCED!"
          "DOOOOOOOMED!")))
+
 
 (defn weird-arity
   ([]
@@ -124,9 +125,3 @@
     )
   )
 
-
-
-(do (println (error-message :mild))
-    (println "helo")
-    (println (primes-below 10))
-    )

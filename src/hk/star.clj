@@ -138,7 +138,22 @@
 
 
 
+;;challenges/jumping-on-the-clouds
+
+
+(defn count-jumps [s]
+  (loop [cnt 0 s' s]
+    #_(println cnt s')
+    (cond 
+     (empty? s') cnt
+     (= s' "0") cnt
+     (or (= s' "00") (= s' "10")) (inc cnt)
+     (= \0 (get s' 2)) (recur (inc cnt) (subs s' 2))
+     (= \1 (get s' 2)) (recur (inc cnt) (subs s' 1)))))
 
 
 
+
+#_(let [n (read-line)]
+  (println (count-jumps (.replace (read-line) " " ""))))
 
