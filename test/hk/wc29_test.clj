@@ -1,4 +1,4 @@
-(ns hk.wc29-test(:require [expectations :refer :all] [hk.wc29 :refer :all]))
+(ns hk.wc29_test(:require [expectations :refer :all] [hk.wc29 :refer :all]))
 
 (expect 1 1)
 (expect "13.09.2017" (day256 "2017"))

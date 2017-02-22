@@ -12,3 +12,14 @@
       (= y 1918) "26.09.1918"
       (is-leap-russia? y) (str "12.09." y)
       :else (str "13.09." y))))
+
+
+;; contests/w29/challenges/big-sorting
+(defn -sort []
+  (let [n (bigint (read-line))]
+    (loop [i 0 v []]
+      (if (= i n) (println (clojure.string/join "\n" (sort v)))
+                  (recur (inc i) (conj v (bigint (read-line))))))))
+
+;;(-sort)
+
