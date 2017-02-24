@@ -173,27 +173,6 @@
                      #_(println i n a b  v (get v b) (get v a ) )
                      (recur (inc i) (replace {(get v b) (get v a)} v)))))))
 
-(-j1)
+;;(-j1)
 
-;;testing
-(defn double-sort [v]
-  (sort-by first (map sort v)))
-
-
-(defn comb [grp v]
-  (let [m (get v (apply min grp))]
-    #_(println grp v)
-    (reduce #(assoc %1 %2 m) v grp)))
-
-(defn comb-all [n grps]
-  (let [v (vec (range n))]
-    (reduce #(comb %2 %1) v grps)))
-
-(defn -j []
-  (let [[n p] (map #(bigint %) (clojure.string/split (read-line) #"\s+"))]
-    (loop [i 0 v []]
-      (if (>= i p) (println (journey-combs (comb-all n (double-sort v))))
-                   (recur (inc i) (conj v (map #(bigint %) (clojure.string/split (read-line) #"\s+"))))))))
-
-;;(-j)
 

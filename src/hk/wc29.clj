@@ -16,10 +16,8 @@
 
 ;; contests/w29/challenges/big-sorting
 (defn -sort []
-  (let [n (bigint (read-line))]
+ (let [n (bigint (read-line))]
     (loop [i 0 v []]
       (if (= i n) (println (clojure.string/join "\n" (sort v)))
                   (recur (inc i) (conj v (bigint (read-line))))))))
-
-;;(-sort)
 
