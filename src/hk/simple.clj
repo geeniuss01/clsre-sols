@@ -29,5 +29,12 @@
                                      (println (inc (count (filter #(Character/isUpperCase %) s))))))
 
 
-(num-words-from-camelcase-word "qCameCas")
+                                        ;
+;(num-words-from-camelcase-word "qCameCas")
 
+(def d [[1 1] [1 1]])
+(def d1 [[0 2] [1 1]])
+(defn pp [d1] (let [a (sort (apply map + d1)) b (sort (map #(apply + %) d1))]
+              (if (= a b) "Possible" "Impossible")))
+
+(pp d1)

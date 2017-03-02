@@ -1,4 +1,7 @@
-(ns hk.star)
+(ns hk.star
+  (:require [clojure.math.combinatorics :refer :all] [lacij.edit.graph :refer :all] [lacij.view.graphview :refer :all] [lacij.layouts.core :refer :all])
+  )
+
 
 (defn rd []
   (Double/parseDouble (read-line)))
@@ -173,6 +176,56 @@
                      #_(println i n a b  v (get v b) (get v a ) )
                      (recur (inc i) (replace {(get v b) (get v a)} v)))))))
 
-;;(-j1)
 
+;; app-refactor
+
+#_(defn to-paths [p k v]
+  (if (set? k)
+    (map #(to-paths p % v) k)
+    (str "(" p ")[" k "]->(" v ")")))
+
+(def view-states {:FPL "full page loader" :FPE "full page error"
+                  :LST "list with data" :LSTSCR "list with scroll"
+                  :LSTPRG "list with progress" :LSTSCRPRG "list with scroll and progress"
+                  })
+
+(def data {:CR "cache response" :CE "cache error" :NR "network response" :NE "network error"})
+
+(def all-comb (cartesian-product (keys view-states) (keys data)))
+
+(def mapping {:FPL {#{:CR :NR} :LST #{:CE :NE} :FPE}
+              :FPE {#{:CR :NR} :LST #{:CE :NE} :FPE}
+              :LST {:CR-ignore :LST :NR-replace :LST }
+
+              })
+
+(defn to-paths-comp [p k v]
+  (if (set? k)
+    (to-paths-comp p (clojure.string/join " " k) v)
+    (str "(" p ")[" k "]->(" v ")")))
+
+(defn pff [v]
+  (println (clojure.string/join "," v)))
+
+(defn red-one [k1 v1]
+  (reduce #(let [k (first %2) v (second %2)]
+            (conj %1 (to-paths-comp k1 k v))) [] v1))
+(defn abb [mp]
+  (reduce #(apply conj %1 (apply red-one %2)) [] mp))
+
+#_(-> mapping
+    (abb)
+    (pff))
+
+ ;; testing https://yuml.me/edit/4bcc7bee
+
+#_(let [g (-> (graph :width 400 :height 400)
+              (add-node :hermes "Hermes")
+              (add-node :zeus "Zeus")
+              (add-node :ares "Ares")
+              (add-edge :father1 :hermes :zeus "something else")
+              (add-edge :father2 :ares :zeus)
+              (lacij.layouts.core/Layout  :hierarchy)
+              (build))]
+    (export g "/tmp/simple.svg" :indent "yes"))
 
