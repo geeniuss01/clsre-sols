@@ -106,6 +106,7 @@
 (grh fp-mapping "h1.svg")
 
 
+
 ;- ------------------ 7                                      ;;7
 
 (defn addd-nodes [g1 m]
@@ -124,10 +125,10 @@
   (reduce #(addd-edges %1 (first %2) (second (second %2))) g1 mp))
 
 
-(defn bld-grph [mp l]
+(defn bld-grph [mappp l]
   (-> (graph)
-      (addd-nodes mp)
-      (addd-all-edges mp)
+      (addd-nodes mappp)
+      (addd-all-edges mappp)
       (layout :random)
       (build)
       (export l :indent "yes")
@@ -147,3 +148,34 @@
 ;(bld-grph cache-mapping "h.svg")
 ;(println "OK" (System/currentTimeMillis))
 
+(def more-types ['(.getName BaseAdEntity)
+                 "TICKER"
+                 "RECENT_NEWSPAPERS"
+                 "RELATED_STORIES"])
+(def types [
+            ["STORY_URDU"]
+            ["BIG_STORY_URDU"]
+            ["STORY_URDU_LITE"]
+            ["VIDEO_URDU"]
+            ["BIG_STORY_GALLERY_URDU"]
+            ["GALLERY_URDU"]
+
+            ["STORY" "SVH"]
+            ["BIG_STORY" "StoryBigViewHolder"]
+            ["STORY_LITE" "SVH"]
+            ["VIDEO" "SVH"]
+            ["BIG_STORY_GALLERY" "GalleryBigViewHolder"]
+            ["GALLERY" "GalleryViewHolder"]
+            ["ALBUM_PHOTO" "GalleryPhotoViewHolder" "inside newsdetail"]
+
+            ["RELATED_STORIES" ]
+            ["SUPPLEMENT_VIEW"]
+
+            ])
+
+
+(defn printable [l]
+  (clojure.string/join "\n" (map first l) ))
+
+(defn non-urdu [t]
+  (filter #(not (.contains (first %) "URDU")) t))
