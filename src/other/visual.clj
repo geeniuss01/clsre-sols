@@ -179,3 +179,6 @@
 
 (defn non-urdu [t]
   (filter #(not (.contains (first %) "URDU")) t))
+
+
+(println (printable (non-urdu types)))
