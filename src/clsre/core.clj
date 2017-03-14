@@ -6,3 +6,4 @@
   [& args]
   (codejam.rvng-pncks/solve)
    )
+(Integer/parseInt "12" 2)
