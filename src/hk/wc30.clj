@@ -3,6 +3,7 @@
 
 ;;https://www.hackerrank.com/contests/w30/challenges/melodious-password
 (def vowels #{\a \e \i \o \u})
+
 (def consonants #{\b \c \d  \f \g \h  \j \k \l \m \n \p \q \r \s \t  \v \w \x \z})
 
 (defn nxt [w]
@@ -38,15 +39,4 @@
                          :else (apply min (map #(+ (cost-to-group (first %)) (rc (second %) (dec grp-cnt)))
                                        (map #(split-at % v) (range 1 (count v)))))))))
 
-(sort-by first >  ll)
-
-(def ll [[20 3] [30 1] [40 2]])
-;(_rc [[20 1] [30 1] [40 1]] 1)
-(rc [[10 15] [12 17] [16 18] [18 13] [30 10] [32 1]] 6)
-(rc  '([12 17] [16 18] [18 13] [30 10] [32 1]) 4)
-;(_cost-to-group ['(20 3)])
-                                        ;(cal-for-selection ['([20 3]) '([30 1] [40 2]) '([30 1] [40 3])])
-
-(println (map #(split-at % ll) (range 1 (count ll))))
-(min (map #(+ (cost-to-group (first %)) (count (second %))) (map #(split-at % ll) (range 1 (count ll)))))
-(cost-to-group [[20 3]])
+;(rc [[10 15] [12 17] [16 18] [18 13] [30 10] [32 1]] 6)
