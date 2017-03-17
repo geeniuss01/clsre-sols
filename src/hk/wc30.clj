@@ -18,7 +18,7 @@
 
 ;;https://www.hackerrank.com/contests/w30/challenges/poles
 
-;; MEMOIZE | SORT
+;;todo  MEMOIZE | SORT
 
 (defn _cost-to-group [v]
   (let [[dest-alt dest-wt] (first v)]
@@ -40,3 +40,12 @@
                                        (map #(split-at % v) (range 1 (count v)))))))))
 
 ;(rc [[10 15] [12 17] [16 18] [18 13] [30 10] [32 1]] 6)
+
+
+;;https://www.hackerrank.com/contests/w30/challenges/range-modular-queries
+
+(defn kch [a l r x y]
+  (let [sa (subvec a l (inc r)) msa (map #(rem % x) sa) ans (count (filter #(= % y) msa))]
+    ans))
+
+;;(kch l 0 4 3 2)
