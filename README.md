@@ -6,7 +6,10 @@ FIXME: description
 
 ## Installation
 
-Download from http://example.com/FIXME.
+lein/boot
+[org.clojars.santosh/clsre "0.1.0-SNAPSHOT"]
+
+[![Clojars Project](https://img.shields.io/clojars/v/org.clojars.santosh/clsre.svg)](https://clojars.org/org.clojars.santosh/clsre)
 
 ## Usage
 
